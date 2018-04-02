@@ -16,7 +16,7 @@ class GameResults : public GUI::Widget {
   IPoint _pos;
   bool inited;
 
-  /* Отображаемое инфо */
+  /* РћС‚РѕР±СЂР°Р¶Р°РµРјРѕРµ СЂРµР·СѓР»СЊС‚РёСЂСѓСЋС‰РµРµ РёРЅС„Рѕ */
   float _timeCurrent;
   float _timeStart;
   int _scoreCurrent;
