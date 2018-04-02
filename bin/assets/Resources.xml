@@ -17,7 +17,7 @@
       <texture id="button_short_mouseover" path="textures/button/back_short_mouseover.png" />
       <texture id="button_long" path="textures/button/back_long.png" />
       <texture id="button_long_mouseover" path="textures/button/back_long_mouseover.png" />
-      <texture id="background_opening" path="textures/background_opening.png" group="StartMenu" upload="false" />
+      <texture id="background_opening" path="textures/background_opening.png" group="Menu" upload="false" />
       <texture id="background_dungeon" path="textures/background_opening.png" group="Game" upload="false" />
       <texture id="background_gameover" path="textures/background_gameover.png" group="Results" upload="false" />
       <texture id="background_victory" path="textures/background_victory.png" group="Results" upload="false" />
