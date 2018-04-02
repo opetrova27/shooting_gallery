@@ -11,7 +11,6 @@ Bullet::Bullet(const short id, ParticleEffectPtr eff, const float speed,
 }
 
 Bullet::~Bullet() {
-//  Log::Info("[Bullet] destroy id=" + std::to_string(Id()));
   _eff->Finish();
   _eff = NULL;
 }
