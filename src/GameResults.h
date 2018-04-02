@@ -14,7 +14,6 @@ class GameResults : public GUI::Widget {
 
  private:
   IPoint _pos;
-  bool inited;
 
   /* Отображаемое результирующее инфо */
   float _timeCurrent;

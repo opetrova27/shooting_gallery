@@ -34,7 +34,7 @@ void GameScreen::AcceptMessage(const Message& message) {
       UpdateEnv();
     }
   }
-  if (publisher == "GameOver") {
+  if (publisher == "GameOverResult") {
     _trackName = "track_" + std::string(data == "win" ? "victory" : "gameover");
     _backgroundName = "background_" + std::string(data == "win" ? "victory" :
                       "gameover");

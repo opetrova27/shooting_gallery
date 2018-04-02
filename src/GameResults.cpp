@@ -14,8 +14,7 @@ GameResults::GameResults(const std::string& name, rapidxml::xml_node<>* elem)
   , _scoreCurrent(0)
   , _scoreMax(0)
   , _timeCurrent(.0f)
-  , _timeStart(.0f)
-  , inited(false) {
+  , _timeStart(.0f) {
   rapidxml::xml_node<>* position = elem->first_node("position");
   if (position) {
     _pos = IPoint(atoi(position->first_attribute("x")->value()),
@@ -33,19 +32,14 @@ void GameResults::Init(const float time, const int scoreCurrent,
               _timeCurrent) +
             " scoreCurrent=" + std::to_string(_scoreCurrent) + " scoreMax=" +
             std::to_string(_scoreMax));
-  inited = true;
 }
 
 void GameResults::Deinit() {
   _timeCurrent = .0f;
   _scoreCurrent = _scoreMax = _shootsCount = 0;
-  inited = false;
 }
 
 void GameResults::Draw() {
-  if (!inited) {
-    return;
-  }
   /* Результат матча */
   if (!Render::isFontLoaded("courier_large")) {
     Log::Error("[GameResults] courier_large font is not loaded");
@@ -81,7 +75,8 @@ void GameResults::Draw() {
   Render::PrintString(spentTimePos, spentTimeText, 1.f, CenterAlign, CenterAlign);
   /* Точность попадания */
   const std::string accuracyText = "Accuracy " + utils::lexical_cast(
-                                     _shootsCount / (_scoreCurrent != 0 ? _scoreCurrent : 1)) + " percent";
+                                     (_shootsCount != 0 ? static_cast<int>(100 * _scoreCurrent /  _shootsCount) : 0))
+                                   + " percent";
   Render::PrintString(_pos, accuracyText, 1.f, CenterAlign, CenterAlign);
   /* Убито монстров */
   const std::string bubblesCollectedText = "Monster killed " +
