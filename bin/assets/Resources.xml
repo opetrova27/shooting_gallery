@@ -1,40 +1,40 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Resources>
-	<FreeTypeFonts group="Menu" upload="false">
-		<font name="arial_blue" family="arial" size="20" color="100;150;255;255" letterSpacing="0"/>
-		<font name="courier_small" family="cour" size="20" color="0;0;0;255" letterSpacing="0"/>
-		<font name="courier_medium" family="cour" size="40" color="255;255;255;255" letterSpacing="0">
-		  <Effect alpha="1.0" type="shadow" blurX="-2" blurY="-2" strength="50" angle="0" inner="false" color="255;255;255;255" offset="0"/>
-		  <Effect alpha="1.0" type="shadow" blurX="2" blurY="2" strength="50" angle="0" inner="false" color="255;255;255;255" offset="0"/>
-		</font>
-		<font name="courier_large" family="cour" size="150" color="255;255;255;255" letterSpacing="0">
-		  <Effect alpha="1.0" type="shadow" blurX="-2" blurY="-2" strength="50" angle="0" inner="false" color="0;0;0;255" offset="0"/>
-		  <Effect alpha="1.0" type="shadow" blurX="2" blurY="2" strength="50" angle="0" inner="false" color="0;0;0;255" offset="0"/>
-		</font>
-	</FreeTypeFonts>
-	<Textures>
-		<texture id="button_short" path="textures/button/back_short.png"/>
-		<texture id="button_short_mouseover" path="textures/button/back_short_mouseover.png"/>
-		<texture id="button_long" path="textures/button/back_long.png"/>
-		<texture id="button_long_mouseover" path="textures/button/back_long_mouseover.png"/>
-		<texture id="background_opening" path="textures/background_opening.png" group="StartMenu" upload="false"/>
-		<texture id="background_dungeon" path="textures/background_opening.png" group="Game" upload="false"/>
-		<texture id="background_gameover" path="textures/background_gameover.png" group="Results" upload="false"/>
-		<texture id="background_victory" path="textures/background_victory.png" group="Results" upload="false"/>
-		<texture id="bullet" path="textures/shooting_gallery/bullet.png" group="Game" upload="false"/>
-    <texture id="bubble" path="textures/shooting_gallery/bubble.png" group="Game" upload="false"/>
-    <texture id="gun"    path="textures/shooting_gallery/gun.png"    group="Game" upload="false"/>
-    <texture id="gunover" path="textures/shooting_gallery/gun_overlayer.png"    group="Game" upload="false"/>
-		<texture id="sounds_enabled" path="textures/icons/sounds_enabled.png"/>
-		<texture id="sounds_disabled" path="textures/icons/sounds_disabled.png"/>
-	</Textures>
-  <Sounds group="Game">
-    <sample id="track_victory" path="sounds/track_victory.ogg" mix="2" mode="stream+cache"/>
-    <sample id="track_opening" path="sounds/track_opening.ogg" mix="2" mode="stream+cache"/>
-    <sample id="track_dungeon" path="sounds/track_dungeon.ogg" mix="2" mode="stream+cache"/>
-    <sample id="track_gameover" path="sounds/track_gameover.ogg" mix="2" mode="stream+cache"/>
-    <sample id="fireball" path="sounds/fireball.ogg" mix="10" mode="cache"/>
-    <sample id="explosion" path="sounds/explosion.ogg" mix="10" mode="cache"/>
-    <sample id="empty" path="sounds/empty.ogg" mix="1" mode="cache"/>
-  </Sounds>
+   <FreeTypeFonts group="Menu" upload="false">
+      <font name="arial_blue" family="arial" size="20" color="100;150;255;255" letterSpacing="0" />
+      <font name="courier_small" family="cour" size="20" color="0;0;0;255" letterSpacing="0" />
+      <font name="courier_medium" family="cour" size="40" color="255;255;255;255" letterSpacing="0">
+         <Effect alpha="1.0" type="shadow" blurX="-2" blurY="-2" strength="50" angle="0" inner="false" color="255;255;255;255" offset="0" />
+         <Effect alpha="1.0" type="shadow" blurX="2" blurY="2" strength="50" angle="0" inner="false" color="255;255;255;255" offset="0" />
+      </font>
+      <font name="courier_large" family="cour" size="150" color="255;255;255;255" letterSpacing="0">
+         <Effect alpha="1.0" type="shadow" blurX="-2" blurY="-2" strength="50" angle="0" inner="false" color="0;0;0;255" offset="0" />
+         <Effect alpha="1.0" type="shadow" blurX="2" blurY="2" strength="50" angle="0" inner="false" color="0;0;0;255" offset="0" />
+      </font>
+   </FreeTypeFonts>
+   <Textures>
+      <texture id="button_short" path="textures/button/back_short.png" />
+      <texture id="button_short_mouseover" path="textures/button/back_short_mouseover.png" />
+      <texture id="button_long" path="textures/button/back_long.png" />
+      <texture id="button_long_mouseover" path="textures/button/back_long_mouseover.png" />
+      <texture id="background_opening" path="textures/background_opening.png" group="StartMenu" upload="false" />
+      <texture id="background_dungeon" path="textures/background_opening.png" group="Game" upload="false" />
+      <texture id="background_gameover" path="textures/background_gameover.png" group="Results" upload="false" />
+      <texture id="background_victory" path="textures/background_victory.png" group="Results" upload="false" />
+      <texture id="bullet" path="textures/shooting_gallery/bullet.png" group="Game" upload="false" />
+      <texture id="bubble" path="textures/shooting_gallery/bubble.png" group="Game" upload="false" />
+      <texture id="gun" path="textures/shooting_gallery/gun.png" group="Game" upload="false" />
+      <texture id="gunover" path="textures/shooting_gallery/gun_overlayer.png" group="Game" upload="false" />
+      <texture id="sounds_enabled" path="textures/icons/sounds_enabled.png" />
+      <texture id="sounds_disabled" path="textures/icons/sounds_disabled.png" />
+   </Textures>
+   <Sounds group="Game">
+      <sample id="track_victory" path="sounds/track_victory.ogg" mix="2" mode="stream+cache" />
+      <sample id="track_opening" path="sounds/track_opening.ogg" mix="2" mode="stream+cache" />
+      <sample id="track_dungeon" path="sounds/track_dungeon.ogg" mix="2" mode="stream+cache" />
+      <sample id="track_gameover" path="sounds/track_gameover.ogg" mix="2" mode="stream+cache" />
+      <sample id="fireball" path="sounds/fireball.ogg" mix="10" mode="cache" />
+      <sample id="explosion" path="sounds/explosion.ogg" mix="10" mode="cache" />
+      <sample id="empty" path="sounds/empty.ogg" mix="1" mode="cache" />
+   </Sounds>
 </Resources>
