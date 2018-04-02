@@ -1,70 +1,70 @@
-<?xml version="1.0"?>
-<GUI>	
-  <include>gui.lua</include>  
-	<Layer name="LayerResult">
-		<Controls>
-      <GameScreen name="ResultScreen">
-        <background name="background_gameover" track="track_gameover"/>
-        <Controls>
-          <ButtonNavigate name="ButtonRestart" layer="LayerGame" text="Restart">
-            <position x="512" y="484"/>
-          </ButtonNavigate>
-          <GameResults name="InfoResult">
-            <position x="512" y="384"/>
-          </GameResults>
-          <ButtonSounds name="SoundsOnStart">
-            <position x="989" y="733"/>
-          </ButtonSounds>
-        </Controls>
-      </GameScreen>
-		</Controls>
-    <Resource>
-      <group>Results</group>
-    </Resource>
-    <Script>MediatorFunc</Script>   
-	</Layer>   
-	<Layer name="LayerGame">
-		<Controls>
-      <GameScreen name="GameScreen">
-        <background name="background_dungeon" track="track_dungeon"/>
-        <Controls>
-          <GameRuntimeInfo name="InfoRuntime">
-            <position x="512" y="768"/>
-          </GameRuntimeInfo>
-          <ButtonNavigate name="ButtonStop" layer="LayerResult" text="Stop">
-            <position x="70" y="30"/>
-          </ButtonNavigate>
-          <GameField>
-            <position x="512" y="384"/>
-          </GameField>
-          <ButtonSounds name="SoundsOnStart">
-            <position x="989" y="733"/>
-          </ButtonSounds>
-        </Controls>
-      </GameScreen>
-		</Controls>
-    <Resource>
-      <group>Game</group>
-    </Resource>
-    <Script>MediatorFunc</Script>   
-	</Layer>    
-	<Layer name="StartLayer">
-		<Controls>
-      <GameScreen name="ScreenStart">
-        <background name="background_opening" track="track_opening"/>
-        <Controls>
-          <ButtonNavigate name="ButtonStart" layer="LayerGame" text="Start">
-            <position x="512" y="384"/>
-          </ButtonNavigate>
-          <ButtonSounds name="SoundsOnStart">
-            <position x="989" y="733"/>
-          </ButtonSounds>
-        </Controls>
-      </GameScreen>
-		</Controls>
-    <Resource>
-      <group>StartMenu</group>
-    </Resource>
-    <Script>MediatorFunc</Script>   
-	</Layer>                                                                    
+<?xml version="1.0" encoding="UTF-8"?>
+<GUI>
+   <include>gui.lua</include>
+   <Layer name="LayerResult">
+      <Controls>
+         <GameScreen name="ResultScreen">
+            <background name="background_gameover" track="track_gameover" />
+            <Controls>
+               <ButtonNavigate name="ButtonRestart" layer="LayerGame" text="Restart">
+                  <position x="512" y="484" />
+               </ButtonNavigate>
+               <GameResults name="InfoResult">
+                  <position x="512" y="384" />
+               </GameResults>
+               <ButtonSounds name="SoundsOnStart">
+                  <position x="989" y="733" />
+               </ButtonSounds>
+            </Controls>
+         </GameScreen>
+      </Controls>
+      <Resource>
+         <group>Results</group>
+      </Resource>
+      <Script>MediatorFunc</Script>
+   </Layer>
+   <Layer name="LayerGame">
+      <Controls>
+         <GameScreen name="GameScreen">
+            <background name="background_dungeon" track="track_dungeon" />
+            <Controls>
+               <GameRuntimeInfo name="InfoRuntime">
+                  <position x="512" y="768" />
+               </GameRuntimeInfo>
+               <ButtonNavigate name="ButtonStop" layer="LayerResult" text="Stop">
+                  <position x="70" y="30" />
+               </ButtonNavigate>
+               <GameField>
+                  <position x="512" y="384" />
+               </GameField>
+               <ButtonSounds name="SoundsOnStart">
+                  <position x="989" y="733" />
+               </ButtonSounds>
+            </Controls>
+         </GameScreen>
+      </Controls>
+      <Resource>
+         <group>Game</group>
+      </Resource>
+      <Script>MediatorFunc</Script>
+   </Layer>
+   <Layer name="StartLayer">
+      <Controls>
+         <GameScreen name="ScreenStart">
+            <background name="background_opening" track="track_opening" />
+            <Controls>
+               <ButtonNavigate name="ButtonStart" layer="LayerGame" text="Start">
+                  <position x="512" y="384" />
+               </ButtonNavigate>
+               <ButtonSounds name="SoundsOnStart">
+                  <position x="989" y="733" />
+               </ButtonSounds>
+            </Controls>
+         </GameScreen>
+      </Controls>
+      <Resource>
+         <group>StartMenu</group>
+      </Resource>
+      <Script>MediatorFunc</Script>
+   </Layer>
 </GUI>
