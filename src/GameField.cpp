@@ -2,8 +2,8 @@
 #include "Settings.h"
 #include "GameField.h"
 
-#define BUBBLE_SIZE 40 /* ������ ������ � �������� */
-#define BULLET_COUNT_MAX 5
+#define BUBBLE_SIZE 40 /* Размер мишени */
+#define BULLET_COUNT_MAX 3 /* Максимальное количество одновременно летящих снарядов на поле*/
 #define IS_BETWEEN(x, y, z) ( x >= y && x <= z )
 
 GameField::GameField(const std::string& name, rapidxml::xml_node<>* elem)
@@ -20,6 +20,7 @@ GameField::GameField(const std::string& name, rapidxml::xml_node<>* elem)
 }
 
 void GameField::Draw() {
+  /* Фон игрового поля */
   Render::device.SetTexturing(false);
   Render::BeginColor(Color(128, 128, 128, 200));
   IRect fieldRect = _field;
@@ -30,7 +31,8 @@ void GameField::Draw() {
   Render::DrawRect(fieldRect);
   Render::EndColor();
   Render::device.SetTexturing(true);
-
+  
+  /* Элементы игрового поля */
   for each (BubblePtr bubble in _bubbles) {
     bubble->Draw();
   }
@@ -71,7 +73,6 @@ bool GameField::MouseDown(const IPoint &mouse_pos) {
   if (!IsMouseOverField()) {
     return false;
   }
-
   if (Core::mainInput.GetMouseLeftButton()) {
     return _gun->MouseDown(mouse_pos);
   }
@@ -89,6 +90,7 @@ void GameField::MouseUp(const IPoint &mouse_pos) {
   if (!IsMouseOverField()) {
     return;
   }
+  /* Стреляем, если был MouseDown и пушка набрала дополнительную силу выстрела */
   if (_gun->GetCurrentStrength() > 0) {
     Shoot(mouse_pos, _gun->GetCurrentStrength());
     _gun->MouseUp(mouse_pos);
@@ -101,7 +103,7 @@ void GameField::Init() {
     BubblePtr bubble(new Bubble(GetNewObjectId(), _field));
     _bubbles.push_back(bubble);
   }
-  /* ������������ ���������� �������� ������� - � 3 ���� ������ ��������� � ���������� */
+  /* Максимальное увеличение скорости снаряда - в 3 раза больше указанной в настройках */
   _gun.reset(new Gun(IPoint(_field.x + _field.width / 2, _field.y),
                      Settings::GetInstance()->GetBulletSpeed() * 3));
 }
@@ -127,7 +129,7 @@ int GameField::GetNewObjectId() {
 }
 
 void GameField::Shoot(const IPoint &mouse_pos, const int gunStrength) {
-  /* ����� ����� �������� �� ���� ����� �� ������ ���������� ���������� */
+  /* Пусть будет снарядов на поле будет не больше указанного количества */
   if (_bullets.size() < BULLET_COUNT_MAX) {
     Log::Info("[GameField] GunStrength = " + std::to_string(gunStrength));
     BulletPtr bullet(new Bullet(GetNewObjectId(),
@@ -136,6 +138,7 @@ void GameField::Shoot(const IPoint &mouse_pos, const int gunStrength) {
                                 IPoint(_field.x + _field.width / 2, _field.y),
                                 mouse_pos, _field));
     _bullets.push_back(bullet);
+    /*  Сообщаем виджету текущих результатов, что был произведен выстрел */
     Core::guiManager.getLayer("LayerGame")->getWidget("InfoRuntime")->AcceptMessage(
       Message("GameField", "Shoot"));
     const int sample = MM::manager.PlaySample("fireball");
@@ -143,6 +146,7 @@ void GameField::Shoot(const IPoint &mouse_pos, const int gunStrength) {
       Log::Error("[GameField] Cannot play fireball sound");
     }
   } else {
+    /* Иначе пушка перегревается */
     ParticleEffectPtr eff = _effCont.AddEffect("no_bullets");
     eff->SetPos(_gun->GetPos());
     eff->Reset();
@@ -157,12 +161,12 @@ void GameField::CheckBullets() {
   std::vector<int> objectIdToDelete;
   int hittedBubbleCount = 0;
   for each (BulletPtr bullet in _bullets) {
-    /* ������� �������� � ������ ������� */
+    /* Удаляем попавшие в стенки снаряды */
     if (!bullet->IsInFly()) {
       objectIdToDelete.push_back(bullet->Id());
       continue;
     }
-    /* ��������� ����������� �������� � ������� */
+    /* Проверяем пересечение снарядов с мишенями */
     for each (BubblePtr bubble in _bubbles) {
       if (bullet->IsIntersectedWithRect(bubble->GetRect().Inflated(
                                           -1 * BUBBLE_SIZE / 10))) {
@@ -191,6 +195,7 @@ void GameField::CheckBullets() {
       _bullets.erase(itbullet);
     }
   }
+  /* Сообщаем виджету отображения результатов о сбитых мишенях */
   for (short i = 0; i < hittedBubbleCount; ++i) {
     Core::guiManager.getLayer("LayerGame")->getWidget("InfoRuntime")->AcceptMessage(
       Message("GameField", "BurstBubble"));
