@@ -1,5 +1,6 @@
 #pragma once
 
+/* Р±Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ Р»РµС‚СЏС‰РµРіРѕ РѕР±СЉРµРєС‚Р° */
 class FlyObject {
  public:
   FlyObject(const short id, const IRect& field, const float speed,
@@ -23,16 +24,16 @@ class FlyObject {
                                 const IPoint& vectorPoint) const;
 
  protected:
-  const IRect _field; /* Область движения */
-  const float _speed; /* Постоянная скорость движения */
+  const IRect _field; /* Р Р°Р·РјРµСЂС‹ Р·РѕРЅС‹ РїРѕР»РµС‚Р° */
+  const float _speed; /* РЎРєРѕСЂРѕСЃС‚СЊ РїРѕР»РµС‚Р° */
 
-  float _timer;       /* Текущий момент сплайна */
-  TimedSpline<FPoint> _spline; /* Сплайн движения объекта */
-  IPoint _startPoint; /* Начальная точка движения объекта */
-  IPoint _endPoint;   /* Конечная точка движения объекта */
-  float _splineTime;  /* Рассчетное время движения объекта */
+  float _timer;       /* РЎС‡РµС‚С‡РёРє РІСЂРµРјРµРЅРё РґР»СЏ Р°РЅРёРјР°С†РёРё РїРѕ СЃРїР»Р°Р№РЅСѓ */
+  TimedSpline<FPoint> _spline; /* РЎРїР»Р°Р№РЅ РїРѕР»РµС‚Р° */
+  IPoint _startPoint; /* РќР°С‡Р°Р»СЊРЅР°СЏ С‚РѕС‡РєР° СЃРїР»Р°Р№РЅР° */
+  IPoint _endPoint;   /* РљРѕРЅРµС‡РЅР°СЏ С‚РѕС‡РєР° СЃРїР»Р°Р№РЅР° */
+  float _splineTime;  /* Р”Р»РёС‚РµР»СЊРЅРѕСЃС‚СЊ РїРѕР»РµС‚Р° РїРѕ СЃРїР»Р°Р№РЅСѓ */
 
  private:
   Render::Texture* _back;
-  const int _id;      /* Идентификатор */
+  const int _id;      /* РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ Р»РµС‚СЏС‰РµРіРѕ РѕР±СЉРµРєС‚Р° */
 };
