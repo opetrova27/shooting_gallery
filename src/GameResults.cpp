@@ -46,7 +46,7 @@ void GameResults::Draw() {
   if (!inited) {
     return;
   }
-  /* Результат боя */
+  /* Р РµР·СѓР»СЊС‚Р°С‚ РјР°С‚С‡Р° */
   if (!Render::isFontLoaded("courier_large")) {
     Log::Error("[GameResults] courier_large font is not loaded");
     return;
@@ -55,7 +55,7 @@ void GameResults::Draw() {
   Render::PrintString(_pos.x, _pos.y + 3 * ELEMENT_HEIGHT,
                       (_scoreCurrent == _scoreMax) ? "WIN" : "FAIL", 1.f, CenterAlign, CenterAlign);
 
-  /* Подробности боя */
+  /* РџРѕРґСЂРѕР±РЅРѕСЃС‚Рё РјР°С‚С‡Р° */
   if (!Render::isFontLoaded("courier_small")) {
     Log::Error("[GameResults] courier_small font is not loaded");
     return;
@@ -69,7 +69,7 @@ void GameResults::Draw() {
   Render::device.SetTexturing(true);
 
   Render::BindFont("courier_small");
-  /* Потраченное время */
+  /* РџРѕС‚СЂР°С‡РµРЅРЅРѕРµ РІСЂРµРјСЏ */
   const short seconds = (static_cast<int>(_timeCurrent)) % MINUTE_LENGHT;
   const short minutes = static_cast<int>(_timeCurrent / MINUTE_LENGHT);
   const std::string spentTimeText = "Spent time " +
@@ -79,11 +79,11 @@ void GameResults::Draw() {
   const IPoint spentTimePos = IPoint(_pos.x,
                                      _pos.y - static_cast<int>(ELEMENT_HEIGHT / 2));
   Render::PrintString(spentTimePos, spentTimeText, 1.f, CenterAlign, CenterAlign);
-  /* Точность попаданий */
+  /* РўРѕС‡РЅРѕСЃС‚СЊ РїРѕРїР°РґР°РЅРёСЏ */
   const std::string accuracyText = "Accuracy " + utils::lexical_cast(
                                      _shootsCount / (_scoreCurrent != 0 ? _scoreCurrent : 1)) + " percent";
   Render::PrintString(_pos, accuracyText, 1.f, CenterAlign, CenterAlign);
-  /* Сбито мишеней */
+  /* РЈР±РёС‚Рѕ РјРѕРЅСЃС‚СЂРѕРІ */
   const std::string bubblesCollectedText = "Monster killed " +
       utils::lexical_cast(
         _scoreCurrent) + "/" + utils::lexical_cast(_scoreMax);
@@ -96,12 +96,11 @@ void GameResults::Draw() {
 void GameResults::AcceptMessage(const Message& message) {
   const std::string& publisher = message.getPublisher();
   const std::string& data = message.getData();
-  //Log::Info("[GameResults] <" + name + "> publisher:'" + publisher + "' data: '" + data + "'");
   if (publisher == "Layer") {
     if (data == "LayerDeinit") {
       Deinit();
     }
-  } else if (publisher == "StoredGameInfo") {
+  } else if (publisher == "GameRuntimeInfo") {
     const int idxFirstDelimeter = data.find_first_of("|");
     const float ftime = std::stof(data.substr(0,
                                   data.length() - idxFirstDelimeter));
