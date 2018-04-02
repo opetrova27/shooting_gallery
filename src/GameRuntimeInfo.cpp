@@ -80,25 +80,25 @@ void GameRuntimeInfo::Draw() {
 }
 
 void GameRuntimeInfo::Update(float dt) {
-  /* ��������� �������� ����� �������� ��������� ������ */
+  /* Ожидаем некоторое время после выигрыша, чтобы досмотреть последний эффект попадания */
   if (_timerWinDelay > .0f) {
     _timerWinDelay -= dt;
-  }
-  if (_timerWinDelay < .0f) {
+  } else if (_timerWinDelay < .0f) {
+    _timerWinDelay = .0f;
     SendGameOver("win");
   }
   if (!_active) {
     return;
   }
   if (_scoreCurrent == _scoreMax) {
-    /* ������� ��� ������ */
+    /* Сбили все мишени */
     _active = false;
     _timerWinDelay = 1.0f;
     return;
   }
   _timeCurrent -= dt;
   if (_timeCurrent < 0) {
-    /* ����� ����� */
+    /* Время истекло */
     _active = false;
     SendGameOver("lose");
     return;
@@ -108,7 +108,6 @@ void GameRuntimeInfo::Update(float dt) {
 void GameRuntimeInfo::AcceptMessage(const Message& message) {
   const std::string& publisher = message.getPublisher();
   const std::string& data = message.getData();
-  //Log::Info("[GameRuntimeInfo] <" + name + "> publisher:'" + publisher + "' data: '" + data + "'");
   if (publisher == "Layer") {
     if (data == "LayerDeinit") {
       SendInfo();
@@ -128,15 +127,16 @@ void GameRuntimeInfo::SendInfo() const {
                            std::to_string(_scoreCurrent) + "|" +
                            std::to_string(_scoreMax) + "|" +
                            std::to_string(_shootsCount);
-  Log::Info("[GameRuntimeInfo] SendInfo: " + info);
-  Core::guiManager.getLayer("LayerGame")->getWidget("ButtonStop")->AcceptMessage(
-    Message("StoreGameInfo", info));
+  /* Сообщаем подробности игры виджету отображения результирующей информации */
+  Core::guiManager.getLayer("LayerResult")->getWidget("InfoResult")->AcceptMessage(
+    Message("GameRuntimeInfo", info));
+  /* Сообщаем итоги игры экрану отображения результатов */
   Core::guiManager.getLayer("LayerResult")->getWidget("ResultScreen")->AcceptMessage(
-    Message("GameOver", _scoreCurrent == _scoreMax ? "win" : "fail"));
+    Message("GameOverResult", _scoreCurrent == _scoreMax ? "win" : "fail"));
 }
 
 void GameRuntimeInfo::SendGameOver(const std::string& sResult) const {
-  Log::Info("[GameRuntimeInfo] SendGameOver: " + sResult);
+  /* Сообщаем итоги игры экрану отображения результатов */
   Core::guiManager.getLayer("LayerGame")->getWidget("ButtonStop")->AcceptMessage(
     Message("GameOver", sResult));
 }
