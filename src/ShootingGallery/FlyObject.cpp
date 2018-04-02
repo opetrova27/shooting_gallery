@@ -13,11 +13,9 @@ FlyObject::FlyObject(const short id, const IRect& field, const float speed,
   , _startPoint(0, 0)
   , _endPoint(0, 0) {
   _back = Core::resourceManager.Get<Render::Texture>(textureName);
-// Log::Info("[FlyObject] create id=" + std::to_string(_id));
 }
 
 FlyObject::~FlyObject() {
-// Log::Info("[FlyObject] delete id=" + std::to_string(Id()));
 }
 
 void FlyObject::Draw() {
