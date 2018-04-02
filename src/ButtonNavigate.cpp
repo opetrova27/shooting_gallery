@@ -8,7 +8,6 @@ ButtonNavigate::ButtonNavigate(const std::string& name,
   : Widget(name)
   , _pos(0, 0)
   , _layer("")
-  , _infoBuffer("")
   , _text("UNKNOWN") {
   _text = elem->first_attribute("text")->value();
   _layer = elem->first_attribute("layer")->value();
@@ -52,10 +51,6 @@ void ButtonNavigate::Draw() {
   }
 }
 
-void ButtonNavigate::Update(float dt) {
-  TrySendStoredInfo();
-}
-
 bool ButtonNavigate::MouseDown(const IPoint &mouse_pos) {
   //TODO: check click by texture
   if (!IsMouseOver()) {
@@ -71,27 +66,12 @@ bool ButtonNavigate::MouseDown(const IPoint &mouse_pos) {
 void ButtonNavigate::AcceptMessage(const Message& message) {
   const std::string& publisher = message.getPublisher();
   const std::string& data = message.getData();
-  //Log::Info("[ButtonNavigate] <" + name + "> publisher:'" + publisher + "' data: '" + data + "'");
   if (publisher == "GameOver") {
     ChangeLayer();
-  } else if (publisher == "StoreGameInfo") {
-    Log::Info("[ButtonNavigate] <" + name + "> StoreGameInfo: " + data);
-    _infoBuffer = data;
   }
 }
 
 void ButtonNavigate::ChangeLayer() {
   Core::guiManager.getLayer(_layer)->AcceptMessage(Message("ChangeLayer",
       _layer));
-  TrySendStoredInfo();
-}
-
-void ButtonNavigate::TrySendStoredInfo() {
-  if (!_infoBuffer.empty()) {
-    Log::Info("[ButtonNavigate] <" + name +
-              "> ChangeLayer: Send StoredGameInfo: " + _infoBuffer + " to layer " + _layer);
-    Core::guiManager.getLayer("LayerResult")->getWidget("InfoResult")->AcceptMessage(
-      Message("StoredGameInfo", _infoBuffer));
-    _infoBuffer.clear();
-  }
 }
