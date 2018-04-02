@@ -21,11 +21,10 @@ class GameRuntimeInfo : public GUI::Widget {
   float _timerWinDelay;
   bool _active;
 
-  /* Отображаемое инфо */
+  /* В РћС‚РѕР±СЂР°Р¶Р°РµРјРѕРµ Р°РєС‚СѓР°Р»СЊРЅРѕРµ РёРЅС„Рѕ */
   float _timeCurrent;
   float _timeStart;
   int _scoreCurrent;
   int _scoreMax;
   int _shootsCount;
-  std::string _gameResult;
 };
