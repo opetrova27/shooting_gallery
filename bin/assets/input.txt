@@ -1,3 +1,3 @@
 CountTarget=20
-Speed=100
-Time=70
+Speed=250
+Time=30
