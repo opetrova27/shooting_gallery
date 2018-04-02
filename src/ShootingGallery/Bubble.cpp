@@ -3,7 +3,7 @@
 #include <math.h>       /* sqrt, pow  */
 #include "Bubble.h"
 
-/* Скорость мишений рандомная от 80 до 280 */
+/* РЎРєРѕСЂРѕСЃС‚СЊ РјРёС€РµРЅРёР№ СЂР°РЅРґРѕРјРЅР°СЏ РѕС‚ 80 РґРѕ 280 */
 Bubble::Bubble(const short id, const IRect& field) :
   FlyObject(id, field, 80 + rand() % 200, "bubble")  {
   Init();
